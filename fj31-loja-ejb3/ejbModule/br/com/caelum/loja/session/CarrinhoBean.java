@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PreDestroy;
+import javax.ejb.EJB;
 import javax.ejb.PostActivate;
 import javax.ejb.PrePassivate;
 import javax.ejb.Remove;
@@ -18,13 +19,14 @@ import br.com.caelum.loja.entity.Livro;
 
 @Stateful
 @Remote(Carrinho.class)
-@Cache("passivating")
-@StatefulTimeout(value=20, unit= TimeUnit.SECONDS)
 public class CarrinhoBean implements Carrinho {
 
 	private double total;
 	private List<Livro> livros = new ArrayList<Livro>();
 
+	@EJB
+	private Mensageiro mensageiro;
+	
 	@Override
 	public void addLivro(Livro livro) {
 		this.livros.add(livro);
@@ -49,6 +51,7 @@ public class CarrinhoBean implements Carrinho {
 		for (Livro livro : this.livros) {
 			System.out.println("Comprando livro: " + livro.getNome());
 		}
+		this.mensageiro.enviaMensagem(this.livros);
 	}
 	
 	@PreDestroy

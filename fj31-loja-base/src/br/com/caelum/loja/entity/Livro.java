@@ -24,4 +24,8 @@ public class Livro implements Serializable {
 	public void setPreco(double preco) {
 		this.preco = preco;
 	}
+	
+	public String toString() {
+		return getNome();
+	}
 }
