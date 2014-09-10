@@ -26,5 +26,7 @@ public class ClienteCarrinho {
 		System.out.println("Total: " + carrinho.getTotal());
 		
 		carrinho.finalizaCompra();
+		
+		//carrinho.addLivro(l2);
 	}
 }

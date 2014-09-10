@@ -3,13 +3,23 @@ package br.com.caelum.loja.session;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PreDestroy;
+import javax.ejb.PostActivate;
+import javax.ejb.PrePassivate;
+import javax.ejb.Remove;
 import javax.ejb.Stateful;
 import javax.ejb.Remote;
+import javax.ejb.StatefulTimeout;
+import java.util.concurrent.TimeUnit;
+
+import org.jboss.ejb3.annotation.Cache;
 
 import br.com.caelum.loja.entity.Livro;
 
 @Stateful
 @Remote(Carrinho.class)
+@Cache("passivating")
+@StatefulTimeout(value=20, unit= TimeUnit.SECONDS)
 public class CarrinhoBean implements Carrinho {
 
 	private double total;
@@ -34,10 +44,25 @@ public class CarrinhoBean implements Carrinho {
 	}
 
 	@Override
+	@Remove
 	public void finalizaCompra() {
 		for (Livro livro : this.livros) {
 			System.out.println("Comprando livro: " + livro.getNome());
 		}
 	}
 	
+	@PreDestroy
+	public void destroy(){
+		System.out.println("Removendo uma instancia de CarrinhoBean do Container");
+	}
+	
+	@PostActivate
+	public void ativando(){
+		System.out.println("Ativando" +this);
+	}
+	
+	@PrePassivate
+	public void passivando(){
+		System.out.println("Passivando "+this);
+	}
 }
