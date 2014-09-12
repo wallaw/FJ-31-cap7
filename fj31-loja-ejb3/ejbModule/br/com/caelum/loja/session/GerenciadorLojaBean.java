@@ -5,13 +5,19 @@ import java.util.Map;
 
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import br.com.caelum.loja.entity.Livro;
 
 @Stateless
 @Remote(GerenciadorLoja.class)
 public class GerenciadorLojaBean implements GerenciadorLoja {
-
+	
+	@PersistenceContext
+	private EntityManager manager;
+	
+	
 	private Map<String, Livro> repositorio;
 	
 	public GerenciadorLojaBean() {
@@ -34,6 +40,12 @@ public class GerenciadorLojaBean implements GerenciadorLoja {
 	@Override
 	public Livro procura(String isbn) {
 		return this.repositorio.get(isbn);
+	}
+
+	@Override
+	public void salva(Livro livro) {
+		this.manager.persist(livro);
+		System.out.println("Livro salvo! ID: "+livro.getId());
 	}
 
 }
