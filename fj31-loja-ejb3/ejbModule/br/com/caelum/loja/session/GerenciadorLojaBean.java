@@ -8,6 +8,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import br.com.caelum.loja.entity.Autor;
 import br.com.caelum.loja.entity.Livro;
 
 @Stateless
@@ -46,6 +47,18 @@ public class GerenciadorLojaBean implements GerenciadorLoja {
 	public void salva(Livro livro) {
 		this.manager.persist(livro);
 		System.out.println("Livro salvo! ID: "+livro.getId());
+	}
+
+	@Override
+	public Autor salva(Autor autor) {
+		this.manager.persist(autor);
+		System.out.println(autor.getId());
+		return autor;
+	}
+
+	@Override
+	public Livro procura(Long id) {
+		return this.manager.find(Livro.class, id);
 	}
 
 }
