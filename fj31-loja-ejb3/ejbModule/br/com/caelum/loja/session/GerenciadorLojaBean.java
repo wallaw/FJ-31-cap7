@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 
 import br.com.caelum.loja.entity.Autor;
 import br.com.caelum.loja.entity.Livro;
+import br.com.caelum.loja.exception.SalvarLivroException;
 
 @Stateless
 @Remote(GerenciadorLoja.class)
@@ -47,6 +48,8 @@ public class GerenciadorLojaBean implements GerenciadorLoja {
 	public void salva(Livro livro) {
 		this.manager.persist(livro);
 		System.out.println("Livro salvo! ID: "+livro.getId());
+		//throw new RuntimeException("Deu erro");
+		throw new SalvarLivroException();
 	}
 
 	@Override

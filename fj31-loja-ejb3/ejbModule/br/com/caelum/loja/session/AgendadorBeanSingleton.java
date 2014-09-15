@@ -16,7 +16,7 @@ import javax.ejb.TimerService;
 @Startup
 public class AgendadorBeanSingleton {
 	
-	@Schedule(hour="*", minute="*/1", second="0", persistent=false)
+	@Schedule(hour="*", minute="*/10", second="0", persistent=false)
 	public void enviaEmailCadaMinutoComInformacoesDoDolar() {
 		System.out.println("enviando email a cada minuto");
 	}
