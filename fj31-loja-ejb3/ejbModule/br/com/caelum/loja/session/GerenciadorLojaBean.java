@@ -1,6 +1,7 @@
 package br.com.caelum.loja.session;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.ejb.Remote;
@@ -67,4 +68,8 @@ public class GerenciadorLojaBean implements GerenciadorLoja {
 		return this.manager.find(Livro.class, id);
 	}
 
+	@Override
+	public List<Livro> listaLivros() {
+		return this.manager.createQuery("SELECT livro from Livro as livro join fetch livro.autores").getResultList();
+	}
 }
