@@ -29,4 +29,11 @@ public class ConsultaDeLivrosBean implements ConsultaDeLivros {
 		return query.getResultList();
 	}
 
+	@Override
+	@WebMethod
+	public List<Livro> buscaAutor(@WebParam(name="nome") String nome) {
+		Query query = manager.createQuery("from Autor  where nome like :nome");
+		query.setParameter("nome", "%"+nome+"%");
+		return query.getResultList();
+	}
 }

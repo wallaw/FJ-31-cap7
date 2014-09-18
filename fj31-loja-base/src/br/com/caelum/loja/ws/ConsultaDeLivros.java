@@ -6,4 +6,6 @@ import br.com.caelum.loja.entity.Livro;
 
 public interface ConsultaDeLivros {
 	List<Livro> buscaLivro(String nome);
+
+	List<Livro> buscaAutor(String nome);
 }
