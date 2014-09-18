@@ -9,5 +9,9 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.jboss.ide.eclipse.as.core.server.runtime.runtimeTarget/JBoss 7.1 Runtime"/>
+	<classpathentry kind="lib" path="/home/ejb4527/Desktop/cursos/31/apache/httpclient-4.1.2.jar"/>
+	<classpathentry kind="lib" path="/home/ejb4527/Desktop/cursos/31/apache/httpcore-4.1.4.jar"/>
+	<classpathentry kind="lib" path="/home/ejb4527/Desktop/cursos/31/apache/jcl-over-slf4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="/home/ejb4527/Desktop/cursos/31/apache/slf4j-api-1.6.1.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

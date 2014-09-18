@@ -7,7 +7,7 @@ import br.com.caelum.loja.entity.Livro;
 
 public interface GerenciadorLoja {
 	Livro procura(String isbn);
-	void salva(Livro livro);
+	Livro salva(Livro livro);
 	Autor salva(Autor autor);
 	Livro procura(Long id);
 	List<Livro> listaLivros();
